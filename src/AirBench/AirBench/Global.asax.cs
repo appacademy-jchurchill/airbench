@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using System.Data.Entity;
+using AirBench.Data;
 
 namespace AirBench
 {
@@ -18,6 +20,8 @@ namespace AirBench
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             UnityConfig.RegisterComponents();
+
+            Database.SetInitializer(new DatabaseInitializer());
         }
     }
 }

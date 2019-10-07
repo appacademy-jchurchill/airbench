@@ -4,6 +4,9 @@ using Unity;
 using Unity.WebApi;
 using Mvc5Resolver = Unity.Mvc5.UnityDependencyResolver;
 using ApiResolver = Unity.WebApi.UnityDependencyResolver;
+using AirBench.Data;
+using AirBench.Data.Repositories;
+using Unity.Lifetime;
 
 namespace AirBench
 {
@@ -13,7 +16,8 @@ namespace AirBench
         {
 			var container = new UnityContainer();
 
-            // TODO register types
+            container.RegisterType<IContext, Context>(new HierarchicalLifetimeManager());
+            container.RegisterType<IBenchRepository, BenchRepository>(new HierarchicalLifetimeManager());
 
             DependencyResolver.SetResolver(new Mvc5Resolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new ApiResolver(container);
