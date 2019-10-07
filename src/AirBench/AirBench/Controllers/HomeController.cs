@@ -2,6 +2,7 @@
 using AirBench.Data.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -20,6 +21,8 @@ namespace AirBench.Controllers
 
         public async Task<ActionResult> Index()
         {
+            ViewBag.BaseApiUrl = ConfigurationManager.AppSettings["BaseApiUrl"];
+
             var benches = await repository.GetList();
             return View(benches);
         }
