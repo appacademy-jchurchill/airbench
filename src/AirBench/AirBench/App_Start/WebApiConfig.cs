@@ -19,6 +19,9 @@ namespace AirBench
             serializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            // Enable support for CORS
+            config.EnableCors();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
